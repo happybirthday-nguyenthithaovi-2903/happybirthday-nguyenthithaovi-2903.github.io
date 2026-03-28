@@ -388,7 +388,7 @@ body {
 /* hearts */
 .hearts {
   margin-top: 35px;
-  font-size: 1.6rem;
+  font-size: 2rem;
   display: flex;
   gap: 12px;
   justify-content: center;
