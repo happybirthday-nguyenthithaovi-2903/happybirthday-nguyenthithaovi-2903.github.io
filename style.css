@@ -219,6 +219,11 @@ body {
   font-weight: 600;
   text-shadow: 0 0 10px rgba(110, 81, 27, 0.2);
 }
+.highlight-2 {
+  color: var(--dark-bg);
+  font-weight: 900;
+  text-shadow: 0 0 10px rgba(36, 25, 6, 0.2);
+}
 
 /* age */
 .age-row {
@@ -390,6 +395,11 @@ body {
   margin-top: 35px;
   font-size: 2rem;
   display: flex;
+  gap: 12px;
+  justify-content: center;
+}
+.hearts-2 {
+  font-size: 1.7rem;
   gap: 12px;
   justify-content: center;
 }
