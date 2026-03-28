@@ -12,14 +12,14 @@
   --gold-dark: #b8860b;
   --desert-titanium: #bdbc89;
   --dark-bg: #4a3b2c;
-  --darker-bg: #2a1f18;
+  --darker-bg: #7c6107;
   /* --glass-bg: rgba(60, 47, 36, 0.7); */
 }
 
 body {
   min-height: 100vh;
   font-family: 'Quicksand', sans-serif;
-  background: radial-gradient(circle at top right, #5c452e 0%, var(--darker-bg) 70%);
+  background: radial-gradient(circle at top right, #f3e739 0%, var(--darker-bg) 70%);
   color: #fff;
   overflow-x: hidden;
 }
@@ -215,9 +215,9 @@ body {
   font-weight: 400;
 }
 .highlight {
-  color: var(--gold);
+  color: var(--darker-bg);
   font-weight: 600;
-  text-shadow: 0 0 10px rgba(212, 175, 55, 0.2);
+  text-shadow: 0 0 10px rgba(110, 81, 27, 0.2);
 }
 
 /* age */
@@ -610,7 +610,7 @@ body {
 }
 
 body {
-  background: radial-gradient(circle at top right, #ffff47 0%, #ffb300 70%) !important;
+  background: radial-gradient(circle at top right, #dba800 0%, #e7d90e 70%) !important;
   color: #4a331a !important;
 }
 
