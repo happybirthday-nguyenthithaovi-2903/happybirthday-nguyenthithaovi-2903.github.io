@@ -10,10 +10,10 @@
   --gold-light: #f8ecd1;
   --gold: #d4af37;
   --gold-dark: #b8860b;
-  --desert-titanium: #bda689;
+  --desert-titanium: #bdbc89;
   --dark-bg: #4a3b2c;
   --darker-bg: #2a1f18;
-  --glass-bg: rgba(60, 47, 36, 0.7);
+  /* --glass-bg: rgba(60, 47, 36, 0.7); */
 }
 
 body {
@@ -95,9 +95,9 @@ body {
 
 /* CARD - FULL SCREEN */
 .card {
-  background: var(--glass-bg);
-  backdrop-filter: blur(24px);
-  -webkit-backdrop-filter: blur(24px);
+  /* background: var(--glass-bg); */
+  /* backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px); */
   border: none;
   color: #fff;
   border-radius: 0;

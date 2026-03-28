@@ -32,9 +32,9 @@
 
     // gradient bg
     const grad = ctx.createLinearGradient(0, 0, canvas.width, canvas.height);
-    grad.addColorStop(0,    '#0d0010');
-    grad.addColorStop(0.45, '#1a0030');
-    grad.addColorStop(1,    '#0d0020');
+    // grad.addColorStop(0,    '#0d0010');
+    // grad.addColorStop(0.45, '#1a0030');
+    // grad.addColorStop(1,    '#0d0020');
     ctx.fillStyle = grad;
     ctx.fillRect(0, 0, canvas.width, canvas.height);
 
@@ -57,13 +57,18 @@
 ═══════════════════════════════════════ */
 (function () {
   const container = document.getElementById('particles');
-  const colors = ['#d4af37', '#bda689', '#f8ecd1', '#aa8529', '#e0c98f', '#ffdf73', '#996515'];
-  const shapes = ['●', '✦', '★', '✧', '♦', '✨'];
+const colors = [
+  '#ffffff',   // trắng sáng ✨
+  '#fff7a8',
+  '#ffe066',
+  '#ffd700',   // vàng tươi
+  '#fff3d1'
+];  const shapes = ['●', '✦', '★', '✧', '♦', '✨'];
 
   function spawnParticle() {
     const el    = document.createElement('div');
     el.className = 'particle';
-    const size  = Math.random() * 18 + 8;
+    const size  = Math.random() * 24 + 12;
     const color = colors[Math.floor(Math.random() * colors.length)];
     const shape = shapes[Math.floor(Math.random() * shapes.length)];
     const dur   = Math.random() * 10 + 8;
@@ -80,7 +85,7 @@
     `;
     el.style.borderRadius    = '0';
     el.textContent           = shape;
-    el.style.color           = color;
+    el.style.textShadow = `0 0 8px ${color}, 0 0 16px ${color}`;
     el.style.display         = 'flex';
     el.style.alignItems      = 'center';
     el.style.justifyContent  = 'center';
@@ -169,14 +174,6 @@ document.addEventListener('click', function (e) {
 });
 
 
-/* ═══════════════════════════════════════
-   WEB AUDIO – BIRTHDAY MELODY
-═══════════════════════════════════════ */
-let audioCtx  = null;
-let playing   = false;
-let gainNode  = null;
-let noteTimer = null;
-
 /* Happy Birthday notes [frequency Hz, beat duration] */
 const SONG = [
   [261.63, 0.5],  [261.63, 0.25], [293.66, 0.75], [261.63, 0.75], [349.23, 0.75], [329.63, 1.5],
@@ -219,33 +216,31 @@ function playMelody() {
   }
 }
 
-function toggleMusic() {
-  const btn = document.getElementById('musicBtn');
+// ===== MUSIC PLAYER (MP3) =====
+let playing = false;
 
-  if (!audioCtx) {
-    audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-    gainNode = audioCtx.createGain();
-    gainNode.gain.value = 1;
-    gainNode.connect(audioCtx.destination);
+function toggleMusic() {
+  const btn   = document.getElementById('musicBtn');
+  const audio = document.getElementById('bdAudio');
+
+  if (!audio) {
+    console.error('Không tìm thấy audio element');
+    return;
   }
 
+  // chỉnh âm lượng nếu cần
+  audio.volume = 0.6;
+
   if (!playing) {
-    playing          = true;
-    btn.textContent  = '⏸ Tạm dừng';
-    playMelody();
+    audio.play().then(() => {
+      playing = true;
+      btn.textContent = '⏸ Tạm dừng';
+    }).catch(err => {
+      console.log('Không phát được nhạc:', err);
+    });
   } else {
+    audio.pause();
     playing = false;
-    clearTimeout(noteTimer);
-    gainNode.gain.cancelScheduledValues(audioCtx.currentTime);
-    gainNode.gain.setValueAtTime(gainNode.gain.value, audioCtx.currentTime);
-    gainNode.gain.linearRampToValueAtTime(0, audioCtx.currentTime + 0.4);
-    setTimeout(() => {
-      if (!playing) {
-        audioCtx.close();
-        audioCtx = null;
-        gainNode  = null;
-      }
-    }, 500);
     btn.textContent = '🎵 Phát nhạc sinh nhật';
   }
 }
@@ -264,7 +259,7 @@ function openGift() {
   const centerX = rect.left + rect.width / 2;
   const centerY = rect.top + rect.height / 2;
 
-  const colors = ['#d4af37', '#bda689', '#f8ecd1', '#aa8529', '#e0c98f', '#ffdf73', '#ffffff', '#ff6b6b'];
+  const colors = ['#d4af37', '#bda689', '#f8ecd1', '#aa8529', '#e0c98f', '#ffdf73', '#ffffff'];
   for (let i = 0; i < 60; i++) {
     const el = document.createElement('div');
     el.className = 'confetti-piece';
@@ -299,4 +294,20 @@ function openGift() {
       toggleMusic();
     }
   }, 1200);
+
+  const wrapper = document.getElementById('main-wrapper');
+
+  wrapper.style.opacity = 1;
+  wrapper.style.transform = 'scale(1)';
+
+  wrapper.animate(
+    [
+      { filter: 'brightness(2)', transform: 'scale(1.1)' },
+      { filter: 'brightness(1)', transform: 'scale(1)' }
+    ],
+    {
+      duration: 600,
+      easing: 'ease-out'
+    }
+  );
 }
