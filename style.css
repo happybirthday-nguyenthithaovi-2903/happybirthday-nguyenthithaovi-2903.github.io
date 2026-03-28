@@ -258,13 +258,13 @@ body {
   border: 1px solid rgba(255,255,255,0.4);
 }
 .age-num {
-  font-size: 2.2rem;
+  font-size: 1.7rem;
   font-weight: 700;
   line-height: 1;
   z-index: 2;
 }
 .age-label {
-  font-size: 0.65rem;
+  font-size: 1.1rem;
   letter-spacing: 1.5px;
   text-transform: uppercase;
   font-weight: 700;
