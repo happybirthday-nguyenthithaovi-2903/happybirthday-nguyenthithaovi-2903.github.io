@@ -610,7 +610,7 @@ body {
 }
 
 body {
-  background: radial-gradient(circle at top right, #dba800 0%, #e7d90e 70%) !important;
+  background: radial-gradient(circle at top right,#e7d90e 0%, #dba800 70%) !important;
   color: #4a331a !important;
 }
 
